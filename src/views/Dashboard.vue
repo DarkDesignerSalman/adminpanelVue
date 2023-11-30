@@ -181,10 +181,15 @@
 </template>
 
 <script>
+import Vue from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
+Vue.use(VueAxios, axios);
 export default {
   name: "Dashboard",
   data() {
     return {
+      list: undefined,
       activityLog: [
         {
           title: "$123456.00",
@@ -250,26 +255,7 @@ export default {
         { text: "Provider", value: "provider" },
         { text: "Schedule", value: "schedule" },
       ],
-      dessertsMaintence: [
-        {
-          bildingId: "R001",
-          bildingName: "Store Name A",
-          service: "Service Name A",
-          problemDescription: "Problem Description Name A",
-          status: "Draft",
-          provider: "Provider Window",
-          schedule: "Friday",
-        },
-        {
-          bildingId: "R002",
-          bildingName: "Store Name B",
-          service: "Service Name B",
-          problemDescription: "Problem Description Name B",
-          status: "Draft",
-          provider: "Provider Window",
-          schedule: "Sunday",
-        },
-      ],
+      dessertsMaintence: [],
       unassignedOptions: [
         { text: "Option 1" },
         { text: "Option 2" },
@@ -277,6 +263,24 @@ export default {
         // Add more options as needed
       ],
     };
+  },
+  mounted() {
+    Vue.axios.get("http://127.0.0.1:8000/api/admin/doctors").then((resp) => {
+      this.list = resp.data.data;
+      console.warn(resp);
+      this.list.forEach((doctor) => {
+        // Do something with each doctor, for example, log the name
+        this.dessertsMaintence.push({
+          bildingId: doctor.id,
+          bildingName: doctor.first_name + " " + doctor.last_name,
+          service: doctor.email,
+          problemDescription: doctor.join_date,
+          status: doctor.birth_date,
+          provider: doctor.gender,
+          schedule: "Friday",
+        });
+      });
+    });
   },
   methods: {
     onButtonClick(item) {
