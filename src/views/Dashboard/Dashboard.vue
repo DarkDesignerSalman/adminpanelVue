@@ -98,84 +98,7 @@
         </v-col>
       </template>
       <v-divider class="ma-5"><hr /></v-divider>
-
-      <template>
-        <v-col cols="12">
-          <v-card>
-            <!-- Header Row -->
-            <v-row align="center" justify="space-between">
-              <v-col cols="8">
-                <h3 class="pl-3">All Maintence (500)</h3>
-              </v-col>
-              <v-col cols="4" class="text-right pr-5">
-                <v-icon color="blue" class="pr-1">mdi-tab</v-icon>
-                <v-icon color="blue" class="pr-1"
-                  >mdi-download-box-outline</v-icon
-                >
-                <v-icon color="blue" class="pr-1">mdi-delete</v-icon>
-                <v-icon color="blue" class="pr-1"
-                  >mdi-arrow-up-bold-circle-outline</v-icon
-                >
-                <v-icon color="blue" class="pr-1"
-                  >mdi-plus-circle-outline</v-icon
-                >
-                <v-icon color="blue">mdi-minus</v-icon>
-              </v-col>
-            </v-row>
-            <v-col lg="4" cols="12" class="m-0 d-flex">
-              <v-btn outlined rounded small shaped class="mr-2"
-                >My Maintenance</v-btn
-              >
-              <v-menu offset-y>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    outlined
-                    rounded
-                    small
-                    shaped
-                    class="mr-2"
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    Unassigned<v-icon>mdi-menu-down</v-icon>
-                  </v-btn>
-                </template>
-
-                <v-list>
-                  <v-list-item
-                    v-for="item in unassignedOptions"
-                    :key="item.text"
-                  >
-                    <v-list-item-title>{{ item.text }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-              <v-btn outlined rounded small shaped class="mr-2"
-                >Estimastes</v-btn
-              >
-              <v-btn outlined rounded small shaped class="mr-2"
-                >Janitorial</v-btn
-              >
-              <v-btn outlined rounded small shaped class="mr-2">Inactive</v-btn>
-
-              <v-icon size="28">mdi-view-list-outline</v-icon>
-            </v-col>
-
-            <!-- Data Table -->
-            <v-data-table
-              :headers="headersMaintence"
-              :items="dessertsMaintence"
-              :items-per-page="5"
-              class="elevation-1"
-            >
-              >
-              <!-- <template v-slot:item.action="">
-                <v-btn color="success" outlined small shaped>View</v-btn>
-              </template> -->
-            </v-data-table>
-          </v-card>
-        </v-col>
-      </template>
+      <AllMaintence></AllMaintence>
     </v-row>
   </div>
 </template>
@@ -184,9 +107,16 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import AllMaintence from "../Dashboard/AllMaintence.vue";
+
 Vue.use(VueAxios, axios);
 export default {
   name: "Dashboard",
+  components: {
+    // Register the Dashboard component
+    AllMaintence,
+  },
+
   data() {
     return {
       list: undefined,
@@ -241,20 +171,7 @@ export default {
           dataModified: "Dynamic",
         },
       ],
-      headersMaintence: [
-        {
-          text: "Bilding Id",
-          align: "start",
-          sortable: false,
-          value: "bildingId",
-        },
-        { text: "Bilding Name", value: "bildingName" },
-        { text: "Service", value: "service" },
-        { text: "Problem Description", value: "problemDescription" },
-        { text: "Status", value: "status" },
-        { text: "Provider", value: "provider" },
-        { text: "Schedule", value: "schedule" },
-      ],
+
       dessertsMaintence: [],
       unassignedOptions: [
         { text: "Option 1" },

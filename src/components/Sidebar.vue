@@ -13,13 +13,23 @@
     </v-img>
     <v-divider></v-divider>
     <v-list>
-      <v-list-item v-for="[icon, text] in links" :key="icon" link>
-        <v-list-item-icon>
-          <v-icon>{{ icon }}</v-icon>
-        </v-list-item-icon>
+      <!-- Other menu items -->
 
+      <v-list-item to="/" link>
+        <v-list-item-icon>
+          <v-icon>mdi-view-dashboard</v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{ text }}</v-list-item-title>
+          <v-list-item-title>Dashboard</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-list-item to="/plan" link>
+        <v-list-item-icon>
+          <v-icon>mdi-calendar</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Plan</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
