@@ -20,7 +20,7 @@
         class="rounded-small ml-4"
         mr-3
         style="width:20px; height:20px;"
-        ><v-icon>mdi-chevron-left</v-icon></v-btn
+        ><v-icon>mdi-chevron-right</v-icon></v-btn
       >
     </v-col>
     <v-spacer />

@@ -96,7 +96,7 @@
                             <!-- General Section -->
                             <v-row>
                               <!-- ... Your existing general code ... -->
-                              <v-col cols="12" md="6">
+                              <v-col cols="12" md="4">
                                 <!-- Service Type Dropdown -->
                                 <v-select
                                   v-model="serviceType"
@@ -106,7 +106,7 @@
                                   dense
                                 ></v-select>
                               </v-col>
-                              <v-col cols="12" md="6">
+                              <v-col cols="12" md="4">
                                 <!-- Service Type Dropdown -->
                                 <v-select
                                   v-model="problemDescription"
@@ -117,7 +117,7 @@
                                 ></v-select>
                               </v-col>
 
-                              <v-col cols="12" md="6">
+                              <v-col cols="12" md="4">
                                 <!-- Provider Dropdown -->
                                 <v-select
                                   v-model="provider"
@@ -179,9 +179,6 @@
 
                             <!-- Status Section -->
                             <v-row>
-                              <v-col cols="12">
-                                <h3>Status</h3>
-                              </v-col>
                               <v-col cols="12" md="6">
                                 <v-select
                                   v-model="status"
@@ -215,7 +212,7 @@
                               <v-btn
                                 @click="addGeneral"
                                 color="primary"
-                                style="width: 20%; height:40px;"
+                                style="width: 20%; height:40px; text-transform: math-auto;"
                               >
                                 Next
                               </v-btn>
@@ -242,9 +239,10 @@
                             <v-btn
                               @click="addSchedule"
                               color="primary"
-                              style="width: 20%; height:40px;"
+                              style="width: 20%; height:40px; text-transform: math-auto;"
                             >
                               Next
+                              <v-icon>mdi-chevron-right</v-icon>
                             </v-btn>
                           </div>
                         </div>
@@ -288,7 +286,8 @@
                                     style="width: 50%; height:40px;"
                                     class="mb-4"
                                   >
-                                    <v-icon>mdi-plus</v-icon> Cleaner
+                                    <v-icon class="mr-3">mdi-plus</v-icon>
+                                    Cleaner
                                   </v-btn>
                                   <v-select
                                     v-model="cleaner"
@@ -360,9 +359,14 @@
                                   <div>
                                     <h3>
                                       Total
-                                      <v-btn class="ms-4" style="width: 40%;">{{
-                                        totalHours.toLowerCase() | currency
-                                      }}</v-btn>
+                                      <v-btn class="ms-4" style="width: 40%;">
+                                        <span
+                                          style="text-transform: math-auto;"
+                                          >{{
+                                            totalHours.toLowerCase() | currency
+                                          }}</span
+                                        >
+                                      </v-btn>
                                     </h3>
                                   </div>
                                 </v-col>
@@ -387,14 +391,15 @@
                                   @click="addSchedule"
                                   color="primary"
                                   class="mr-3"
-                                  style="width: 20%; height:40px;"
+                                  style="width: 20%; height:40px; text-transform: math-auto;"
                                 >
+                                  <v-icon>mdi-chevron-left</v-icon>
                                   Previous
                                 </v-btn>
                                 <v-btn
                                   @click="submitSchedule"
                                   color="primary"
-                                  style="width: 20%; height:40px;"
+                                  style="width: 20%; height:40px; text-transform: math-auto;"
                                 >
                                   Submit
                                 </v-btn>
@@ -425,7 +430,7 @@
                           <v-btn
                             @click="addBuilding"
                             color="primary"
-                            style="width: 20%; height:40px;"
+                            style="width: 20%; height:40px; text-transform: math-auto;"
                           >
                             Submit
                           </v-btn>
@@ -508,7 +513,7 @@ export default {
       hourlyRate: "",
       isHourlyRate: false,
       totalAmount: "$0.00",
-      totalHours: "0hrs",
+      totalHours: "0 hrs",
       currentSection: 1,
       // Replace with your actual options
     };
@@ -532,6 +537,9 @@ export default {
     },
     // Other methods for your component
     toggleButtonState() {
+      this.buttonState = !this.buttonState;
+    },
+    toggleGeneralButtonState() {
       this.buttonState = !this.buttonState;
     },
     addSchedule() {

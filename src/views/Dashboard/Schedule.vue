@@ -32,10 +32,23 @@
     </v-row>
 
     <v-row class="d-flex justify-center align-center pb-5">
-      <v-icon @click="moveBackward" class="mr-2">mdi-chevron-left</v-icon>
-      <h4>FY2024</h4>
-      <v-icon @click="moveForward" class="ml-2">mdi-chevron-right</v-icon>
-      <v-btn @click="handleFourYears" class="ml-2">
+      <v-btn
+        icon
+        outlined
+        class="rounded-small mr-3"
+        style="width:20px; height:20px;"
+        ><v-icon>mdi-chevron-left</v-icon></v-btn
+      >
+      <span> {{ textItems[currentIndex] }}</span>
+      <v-btn
+        icon
+        outlined
+        class="rounded-small ml-4"
+        mr-3
+        style="width:20px; height:20px;"
+        ><v-icon>mdi-chevron-right</v-icon></v-btn
+      >
+      <v-btn @click="handleFourYears" class="ml-5">
         <v-icon @click="moveBackward" class="mr-2">mdi-chevron-left</v-icon>+ 4
         Years</v-btn
       >
@@ -626,6 +639,8 @@ export default {
   data() {
     return {
       // Date format: YYYY-MM-DD
+      currentIndex: 0,
+      textItems: ["Fy 2024"],
 
       serviceWindowOptions: ["Service Window Monthly", "Monthly"],
       frequencyOptions: ["1st Period of all Quater", "Frequency"],
